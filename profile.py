@@ -70,7 +70,7 @@ rspec.addTour(tour)
 
 # Network
 netmask="255.255.255.0"
-network = rspec.Link("Backhaul")
+network = rspec.Link("Network")
 network.link_multiplexing = True
 network.vlan_tagging = True
 network.best_effort = True
@@ -96,7 +96,7 @@ kube_m.ram = 1024 * 8
 #kube_m.hardware_type = params.Hardware
 kube_m.routable_control_ip = True
 kube_m.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD'
-kube_m.Site('Nervion')
+kube_m.Site('RAN')
 iface = kube_m.addInterface()
 iface.addAddress(PG.IPv4Address("192.168.1.2", netmask))
 network.addInterface(iface)
@@ -111,7 +111,7 @@ for i in range(0,params.computeNodeCount):
     #kube_s.hardware_type = params.Hardware
     kube_s.routable_control_ip = True
     kube_s.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD'
-    kube_s.Site('Nervion')
+    kube_s.Site('RAN')
     iface = kube_s.addInterface()
     iface.addAddress(PG.IPv4Address("192.168.1." + str(i+3), netmask))
     network.addInterface(iface)

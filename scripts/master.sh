@@ -145,7 +145,7 @@ echo "kubernetes dashboard endpoint: $dashboard_endpoint"
 echo "And this is the dashboard credential: $dashboard_credential"
 
 #Deploy metrics server
-sudo kubectl create -f config/test/metrics-server.yaml
+sudo kubectl create -f config/metrics-server.yaml
 
 # to know how much time it takes to instantiate everything.
 echo "Setup DONE!"

@@ -7,4 +7,4 @@ fi
 
 cd /local/repository/config/
 
-sudo srsepc epc.conf
+sudo srsepc core.conf
