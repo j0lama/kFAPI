@@ -2,13 +2,6 @@
 #set -u
 #set -x
 
-
-# Ensure this script is run once
-if [ -f /local/repository/master-ready ]; then
-    exit 0
-fi
-
-
 SCRIPTDIR=$(dirname "$0")
 WORKINGDIR='/local/repository'
 username=$(id -nu)
@@ -87,7 +80,7 @@ sudo cp /etc/kubernetes/admin.conf $KUBEHOME/
 sudo chown ${username}:${usergid} $KUBEHOME/admin.conf
 
 # Install Flannel. See https://github.com/coreos/flannel
-sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+sudo kubectl apply -f /local/repository/config/flannel-network-conf.yaml
 
 # use this to enable autocomplete
 source <(kubectl completion bash)
@@ -146,9 +139,12 @@ echo "And this is the dashboard credential: $dashboard_credential"
 
 #Deploy metrics server
 sudo kubectl create -f config/metrics-server.yaml
+# Deploy emulator
+sudo kubectl create -f config/deployment.yaml
+
+# Log all the traffic on the Nervion master node
+#sudo tcpdump -i any -w ~/tcpdump.pcap &
 
 # to know how much time it takes to instantiate everything.
 echo "Setup DONE!"
 date
-
-touch /local/repository/master-ready
