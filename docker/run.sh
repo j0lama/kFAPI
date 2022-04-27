@@ -5,4 +5,4 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-kubectl run shell$1 --rm -i --tty --image j0lama/empty:latest -- bash
+kubectl run shell$1 --rm -i --tty --privileged --image j0lama/empty:latest -- bash
