@@ -86,17 +86,6 @@ iface = epc.addInterface()
 iface.addAddress(PG.IPv4Address("192.168.1.1", netmask))
 network.addInterface(iface)
 
-# Core
-test = rspec.RawPC("test")
-test.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD'
-test.addService(PG.Execute(shell="sh", command="/usr/bin/sudo /local/repository/scripts/core_setup.sh"))
-test.hardware_type = params.Hardware
-test.Site('Core')
-iface = test.addInterface()
-iface.addAddress(PG.IPv4Address("192.168.1.5", netmask))
-network.addInterface(iface)
-
-
 
 # K8s Master
 kube_m = rspec.XenVM('master')
