@@ -14,11 +14,12 @@ WORKDIR cmake_targets/
 
 # Build OAI eNB
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC ./build_oai -I
-RUN ./build_oai --eNB
+RUN ./build_oai --UE
 
 
 # Configure eNB
 
 WORKDIR ran_build/build/
-COPY enb.conf .
-COPY run_enb.sh .
+COPY ue.conf .
+COPY sim.conf .
+COPY run_ue.sh .
