@@ -37,17 +37,19 @@ rspec = PG.Request()
 # Profile parameters.
 #
 
-pc.defineParameter("computeNodeCount", "Number of slave/compute nodes",
+pc.defineParameter("computeNodeCount", "Number of Kubernetes nodes",
                    portal.ParameterType.INTEGER, 1)
 
 pc.defineParameter("Hardware", "Node hardware",
-                   portal.ParameterType.STRING,"VM",[("VM","VM"),("d430","d430"),("d710","d710"), ("d820", "d820"), ("pc3000", "pc3000")])
+                   portal.ParameterType.STRING,"VM",[("VM","VM"),("d430","d430"),("d710","d710"), ("d820", "d820"), ("pc3000", "pc3000")],
+                   longDescription="Type of nodes")
 
 
 pc.defineParameter("cores", "Number of cores",
                    portal.ParameterType.STRING,"16",[("4","4"),("6","6"), ("8", "8"), ("10", "10"), ("12", "12")],
                    longDescription="Number of cores of each Nervion node.",
                    advanced=True)
+
 pc.defineParameter("ram", "RAM size",
                    portal.ParameterType.STRING,"4",[("4","4"),("8","8"), ("12", "12"), ("16", "16"), ("20", "20"), ("24", "24"), ("32", "32")],
                    longDescription="RAM size (GB)",
@@ -55,11 +57,6 @@ pc.defineParameter("ram", "RAM size",
 
 
 params = pc.bindParameters()
-
-#
-# Give the library a chance to return nice JSON-formatted exception(s) and/or
-# warnings; this might sys.exit().
-#
 pc.verifyParameters()
 
 
